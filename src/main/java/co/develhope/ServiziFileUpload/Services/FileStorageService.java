@@ -37,4 +37,11 @@ public class FileStorageService {
         if(!fileFromRepository.exists()) throw new IOException("file non esistente");
         return IOUtils.toByteArray(new FileInputStream(fileFromRepository));
     }
+    @SneakyThrows
+    public void remouve(String fileName) {
+        File fileFromRepository = new File(fileRepositoryFolder + "\\" + fileName);
+        if(!fileFromRepository.exists()) return;
+        boolean deleteResult = fileFromRepository.delete();
+        if(deleteResult == false) throw new Exception("File non rimovibile");
+    }
 }
